@@ -1,11 +1,8 @@
 package com.fitjourney.back_end.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,24 +17,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Diet {
-
+public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
 
-    private String description;
-
-    @Enumerated(EnumType.STRING) 
-    private DietType dietType;
-
-    private LocalDateTime createdAt;
-    
     @OneToMany
-    private List<Meal> meals;
-
-    public void addMeal(){
-
-    }
+    private List<Nutrient> nutrients;
 
 }

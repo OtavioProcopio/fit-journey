@@ -8,6 +8,8 @@ public class FitJourneyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FitJourneyApplication.class, args);
+		System.out.println( "projeto rodando ");
+
 	}
 
 }

@@ -1,13 +1,11 @@
 package com.fitjourney.back_end.model;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,15 +16,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Nutrient {
+public class NutrientTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private double amount;
-    private String unit;
 
-    @OneToMany(mappedBy = "nutrient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<NutrientTable> nutrientTable;
+    private double calories;       
+    private double proteins;       
+    private double fats;           
+    private double carbohydrates;  
+    private double fiber;
 
+    @ManyToOne
+    @JoinColumn(name = "nutrient_id", nullable = false)
+    private Nutrient nutrient;
+    
 }

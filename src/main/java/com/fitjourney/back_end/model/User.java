@@ -1,5 +1,9 @@
 package com.fitjourney.back_end.model;
 
+import java.util.List;
+import java.util.UUID;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +37,13 @@ public  abstract class User {
     private String email;
 
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Workout> workouts;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Diet> diets;
+
 
     @Enumerated(EnumType.STRING) 
     protected Role role;

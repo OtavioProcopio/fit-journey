@@ -1,8 +1,10 @@
 package com.fitjourney.back_end.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,6 +21,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +39,17 @@ public class Workout {
         joinColumns = @JoinColumn(name = "workout_id"),
         inverseJoinColumns = @JoinColumn(name = "exercise_id")
     )
-    private List<Exercise> exercise;
+    private List<Exercise> exercises = new ArrayList<>(); 
 
     private LocalDateTime createdAt;
+
+
+    
+    public void addExercise(Exercise exercise) {
+        exercises.add(exercise);
+    }
+    
+    public void removeExercise(Exercise exercise) {
+        exercises.remove(exercise);
+    }
 }
